@@ -8,7 +8,7 @@ import Slide from "@mui/material/Slide";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Forgotpassword.css";
+import "./forgotpassword.css";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OtpForm from "./OtpForm";
@@ -46,7 +46,7 @@ const Forgotpassword = () => {
     e.preventDefault();
   
     try {
-      const response = await axios.post("https://blog-project-backend-6kzr.onrender.com//forgotPassword", state);
+      const response = await axios.post("https://blog-project-backend-6kzr.onrender.com/forgotPassword", state);
       console.log("Response:", response);
   
       if (response.status === 200) {

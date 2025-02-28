@@ -70,7 +70,7 @@ const CreateBlog = () => {
     // console.log(fromdata)
 
     try {
-      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com//createblog`, {
+      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/createblog`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

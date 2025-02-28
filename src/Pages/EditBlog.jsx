@@ -70,7 +70,7 @@ const EditBlog = () => {
     const fetchBlog = async () => {
       const token = localStorage.getItem("Token");
       try {
-        const response = await fetch(`https://blog-project-backend-6kzr.onrender.com//editget/${id}`, {
+        const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/editget/${id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const EditBlog = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com//editblog`, {
+      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/editblog`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com//login`, {
+      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

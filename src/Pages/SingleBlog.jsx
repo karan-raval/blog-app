@@ -23,7 +23,7 @@ const SingleBlog = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await fetch(`https://blog-project-backend-6kzr.onrender.com//allblogs/${id}`);
+        const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/allblogs/${id}`);
         if (!response.ok) {
           throw new Error("Failed to fetch blog");
         }

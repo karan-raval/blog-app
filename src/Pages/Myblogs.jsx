@@ -11,7 +11,7 @@ const UserBlogs = () => {
   useEffect(() => {
     const fetchUserBlogs = async () => {
       try {
-        const response = await fetch("https://blog-project-backend-6kzr.onrender.com//myBlogs", {
+        const response = await fetch("https://blog-project-backend-6kzr.onrender.com/myBlogs", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -38,7 +38,7 @@ const UserBlogs = () => {
   const handleDelete = async (id) => {
     // console.log(id)
     try {
-      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com//delete`, {
+      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/delete`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

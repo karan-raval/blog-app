@@ -21,7 +21,7 @@ const OtpForm = () => {
         e.preventDefault();
     
         try {
-          const response = await axios.post("https://blog-project-backend-6kzr.onrender.com//resetPassword", fpass);
+          const response = await axios.post("https://blog-project-backend-6kzr.onrender.com/resetPassword", fpass);
     
           if (response.status === 200) {
             toast.success(response.data.msg || "Password reset successfully!", {

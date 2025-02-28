@@ -24,7 +24,7 @@ const Signup = () => {
     console.log(state);
 
     try {
-      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com//signup`, {
+      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

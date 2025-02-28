@@ -41,7 +41,7 @@ const Popover = () => {
     console.log("Form State:", state);
   
     try {
-      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com//changepassword`, {
+      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/changepassword`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
