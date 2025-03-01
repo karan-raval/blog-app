@@ -17,7 +17,7 @@ const HomePage = () => {
 
   const handleLike = async (blogId) => {
     try {
-      const response = await fetch(`http://localhost:5010/${blogId}/like`, {
+      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/${blogId}/like`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -33,7 +33,7 @@ const HomePage = () => {
       }
 
       // Instead of updating a single blog, refetch all blogs to ensure full data
-      const allBlogsResponse = await fetch("http://localhost:5010/allBlogs");
+      const allBlogsResponse = await fetch("https://blog-project-backend-6kzr.onrender.com/allBlogs");
       const allBlogs = await allBlogsResponse.json();
       setBlogs(allBlogs);
 
@@ -47,7 +47,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("http://localhost:5010/allBlogs"); // Adjust the URL as needed
+        const response = await fetch("https://blog-project-backend-6kzr.onrender.com/allBlogs"); // Adjust the URL as needed
         if (!response.ok) {
           throw new Error("Failed to fetch blogs");
         }

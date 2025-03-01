@@ -87,7 +87,7 @@ const CreateBlog = () => {
         }, 4000);
       } else {
         console.error("Failed to add BLog Data:", result.message);
-        toast.success("Failed to add BLog Data:", result.message);
+        toast.error("Failed to add BLog Data:", result.message);
       }
     } catch (error) {
       console.error("Error during submission:", error);

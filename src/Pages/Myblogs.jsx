@@ -7,54 +7,68 @@ const UserBlogs = () => {
     const navigate=useNavigate()
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+    const [token, setToken] = useState((localStorage.getItem("Token")) || null);
+  
+useEffect(() => {
+  const fetchUserBlogs = async () => {
+    const storedToken = localStorage.getItem("Token");
 
-  useEffect(() => {
-    const fetchUserBlogs = async () => {
-      try {
-        const response = await fetch("https://blog-project-backend-6kzr.onrender.com/myBlogs", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("Token")}`,
-          },
-        });
+    if (!storedToken) {
+      console.error("❌ No token found. Please log in again.");
+      setLoading(false);
+      return;
+    }
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch user blogs");
-        }
 
-        const data = await response.json();
-        setBlogs(data);
-      } catch (error) {
-        console.error("Error fetching user blogs:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchUserBlogs();
-  }, []);
-
-  const handleDelete = async (id) => {
-    // console.log(id)
     try {
-      const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/delete`, {
-        method: "DELETE",
+      const response = await fetch("https://blog-project-backend-6kzr.onrender.com/myBlogs", {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("Token")}`,
+          Authorization: `Bearer ${storedToken}`,
         },
-        body: JSON.stringify({ id }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to delete blog");
+        throw new Error(`Failed to fetch user blogs: ${response.status}`);
       }
 
+      const data = await response.json();
+      setBlogs(data);
     } catch (error) {
-      console.error("Error deleting blog:", error);
+      console.error("Error fetching user blogs:", error);
+    } finally {
+      setLoading(false);
     }
   };
+
+  fetchUserBlogs();
+}, []);
+
+
+const handleDelete = async (id) => {
+  try {
+    const response = await fetch(`https://blog-project-backend-6kzr.onrender.com/delete`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("Token")}`,
+      },
+      body: JSON.stringify({ id }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete blog");
+    }
+
+    // Update state to remove the deleted blog
+    setBlogs((prevBlogs) => prevBlogs.filter(blog => blog._id !== id));
+
+  } catch (error) {
+    console.error("Error deleting blog:", error);
+  }
+};
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -73,7 +87,7 @@ const UserBlogs = () => {
             <div className="grid-sizer"></div>
             {blogs.map((el) => (
               <article
-                key={el.id}
+                key={el._id}
                 className="masonry__brick entry format-standard aos-init aos-animate"
                 data-aos="fade-up"
                 id={`sy${el.id}`}
@@ -108,8 +122,8 @@ const UserBlogs = () => {
                   </div>
                   <br /><br />
                   <div className="entry__actions">
-                  <button onClick={() => handleEdit(el._id)}>Edit</button>
-                  <button onClick={() => handleDelete(el._id)}>Delete</button>
+                  <button  className="edit-btn" onClick={() => handleEdit(el._id)}>Edit</button>
+                  <button className="delete-btn" onClick={() => handleDelete(el._id)}>Delete</button>
                   </div>
                 </div>
               </article>
